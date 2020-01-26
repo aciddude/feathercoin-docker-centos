@@ -1,0 +1,38 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: feathercoin
+  labels:
+    app: feathercoin
+spec:
+  selector:
+    matchLabels:
+      app: feathercoin
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: feathercoin
+    spec:
+      containers:
+      - image: acidd/feathercoin-docker-centos7:latest
+        name: feathercoin
+        env:
+        - name: FEATHERCOIN_RPC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: feathercoin-secret
+              key: rpcpass
+        - name: FEATHERCOIN_RPC_USER
+          valueFrom:
+            secretKeyRef:
+              name: feathercoin-secret
+              key: rpcuser
+        volumeMounts:
+        - name: feathercoin-persistent-storage
+          mountPath: /data
+      volumes:
+      - name: feathercoin-persistent-storage
+        persistentVolumeClaim:
+          claimName: feathercoin-pvc

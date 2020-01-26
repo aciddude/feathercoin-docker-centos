@@ -42,5 +42,5 @@ VOLUME /data
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 9336 9337 19336 19337 18446 18447
+EXPOSE 9336 9337 19336 19337
 CMD ["feathercoind"]

@@ -1,0 +1,36 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: localstorage
+provisioner: docker.io/hostpath
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: feathercoin
+  name: feathercoin-pvc
+spec:
+  storageClassName: localstorage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: feathercoin-pv
+  labels:
+    type: local
+spec:
+  storageClassName: localstorage
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    # this is the path on kubernetes host
+    path: "/Users/davidwalton/Desktop/feathercoindata"
