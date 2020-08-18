@@ -10,8 +10,9 @@ RUN adduser feathercoin && usermod -aG wheel feathercoin
 RUN yum -y update && yum -y upgrade && \
   yum -y install gpg wget
 
-ENV FEATHERCOIN_VERSION 0.18.2
-ENV FEATHERCOIN_URL https://github.com/FeatherCoin/Feathercoin/releases/download/v0.18.2/feathercoin-0.18.2-linux64.tar.gz
+ENV FEATHERCOIN_VERSION 0.19.1
+
+ENV FEATHERCOIN_URL https://github.com/FeatherCoin/Feathercoin/releases/download/v0.19.1/feathercoin-0.19.1-linux64.tar.gz
 
 
 # Setup gosu for easier command execution
@@ -41,6 +42,8 @@ VOLUME /data
 
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+
+RUN feathercoind -version | grep "Feathercoin Core version v${FEATHERCOIN_VERSION}"
 
 EXPOSE 9336 9337 19336 19337
 CMD ["feathercoind"]
