@@ -1,6 +1,6 @@
 ####################################
-#  Feathercoin v0.18.2 - Centos7
-#  Aciddude
+#  Feathercoin v0.19.1 - Centos7
+#  acidd - hub.docker.com/r/acidd/feathercoin
 #  http://www.feathercoin.com
 ####################################
 FROM centos:7
