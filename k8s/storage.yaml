@@ -33,4 +33,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   hostPath:
     # this is the path on kubernetes host
-    path: "/Users/davidwalton/Desktop/feathercoindata"
+    path: "/tmp/feathercoindata"
