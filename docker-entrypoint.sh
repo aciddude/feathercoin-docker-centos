@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ "$1" == "feathercoin-cli" || "$1" == "feathercoin-tx" || "$1" == "feathercoind" || "$1" == "test_feathercoin" ]]; then
+if [[ "$1" == "feathercoin-wallet" || "$1" == "feathercoin-cli" || "$1" == "feathercoin-tx" || "$1" == "feathercoind" || "$1" == "test_feathercoin" ]]; then
 	mkdir -p "$FEATHERCOIN_DATA"
 
 cat <<-EOF > "$FEATHERCOIN_DATA/feathercoin.conf"
